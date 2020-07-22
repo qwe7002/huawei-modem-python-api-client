@@ -1,7 +1,8 @@
 import logging
 
 from huaweisms.api.config import MODEM_HOST
-from huaweisms.api.common import get_from_url
+from huaweisms.api.common import get_from_url, ApiCtx
+
 
 
 logger = logging.getLogger(__name__)
@@ -23,4 +24,4 @@ def get_session_token_info(base_url=None):
         base_url = 'http://{}/api'.format(MODEM_HOST)
 
     url = "{}/webserver/SesTokInfo".format(base_url)
-    return get_from_url(url, timeout=30)
+    return get_from_url(url,ctx=ApiCtx(modem_host=MODEM_HOST), timeout=30)
